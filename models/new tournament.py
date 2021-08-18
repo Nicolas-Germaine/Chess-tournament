@@ -1,5 +1,5 @@
 import datetime
-from  player import Player
+"""from  player import Player"""
 
 """Game time"""
 
@@ -14,4 +14,5 @@ class Tournament:
         self.name = name
         self.place = place
         self.date = date
+        self.players = players
         self.rounds = rounds
