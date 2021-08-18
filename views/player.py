@@ -6,10 +6,10 @@ class View:
 
     def menu(self):
         """prompt for main menu"""
-        new_tournament =
-        load_tournament =
-        add_players =
-        load_players =
+        new_tournament = input("Nouveau tournoi ? : ")
+        load_tournament = input("Charger un tournoi ? : ")
+        add_players = input("Ajouter des joueurs ? : ")
+        load_players =("Charger une liste de joeurs ? : ")
 
     def information_player(self):
         """Prompt for a name."""

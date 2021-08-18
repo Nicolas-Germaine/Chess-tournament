@@ -8,7 +8,7 @@ class Controller:
     def __init__(self, view):
         """List of players and a view."""
         # models
-        self.menu: List[Main Menu] = []
+        self.menu: List[Main_Menu] = []
         self.players: List[Player] = []
 
         # views
