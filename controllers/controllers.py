@@ -1,10 +1,10 @@
-from models.utils import Menu
-from views import HomeMenuView
+from ..models.utils import Menu
+from ..views.HomeMenuView import HomeMenuView
 
 class ApplicationController:
     """Main controller."""
 
-    def __init__(self, view):
+    def __init__(self,):
         """List of players and a view."""
         self.controller = None
 
@@ -17,7 +17,7 @@ class HomeMenuController:
     """List of menu"""
     def __init__(self):
         self.menu = Menu()
-        self.view = HomeMenuView()
+        self.view = HomeMenuView(self.menu)
 
     def __call__(self):
         # Contruction menu

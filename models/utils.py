@@ -20,7 +20,7 @@ class Menu:
             key = str(self._autokey)
             self._autokey += 1
 
-        self._entries[str(key)] = (option, handler)
+        self._entries[str(key)] = MenuEntry(option, handler)
 
     def items(self):
         return self._entries.items()
@@ -31,7 +31,7 @@ class Menu:
     def __getitem__(self, choice):
         return self._entries[choice]
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     """menu = Menu()
     menu.add("auto", "premiere option du menu", lambda: None)
     menu.add("auto", "seconde option du menu", lambda: None)
