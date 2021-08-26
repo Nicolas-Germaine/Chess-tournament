@@ -1,13 +1,12 @@
 """Run."""
 
-from models.player import Player
-from controllers.controllers import Controller
+from controllers.controllers import ApplicationController
 from views.player import View
 
 
 def main():
     view = View()
-    game = Controller(view)
+    game = ApplicationController(view)
     game.run()
 
 
