@@ -4,7 +4,9 @@ class HomeMenuView:
         self.menu = menu
 
     def _display_menu(self):
-        print("Accueil")
+        print()
+        print(">>>>> Accueil du tournoi d'échec <<<<<")
+        print()
         for key, entry in self.menu.items():
             print(f"{key}: {entry.option}")
 
@@ -13,7 +15,9 @@ class HomeMenuView:
             # afficher le menu à l'utilisateur
             self._display_menu()
             # demander à l'utilisateur de faire un choix
-            choice = input(">> ")
+            print()
+            choice = input("Entrez votre choix >> ")
+            print()
             # valider le choix utilisateur
             if choice in self.menu:
                 # retourner le choix de l'utilisateur

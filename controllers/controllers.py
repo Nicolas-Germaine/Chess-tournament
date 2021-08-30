@@ -1,5 +1,8 @@
 from ..models.utils import Menu
 from ..views.HomeMenuView import HomeMenuView
+from ..models.new_tournament import Tournament
+from ..models.player import Player
+from ..views.NewTournamentView import NewTournamentView
 
 class ApplicationController:
     """Main controller."""
@@ -35,24 +38,43 @@ class HomeMenuController:
 
 class NewTournamentController:
     """aaaa"""
+    def __init__(self):
+        self.menu = Menu()
+        self.view = NewTournamentView(self.menu)
+
     def __call__(self):
-        print("Dans le controller de nouveau tournoi")
+        print("Vous allez devoir ajouter les informations pour un nouveau tournoi.")
+        print()
+        return Tournament()
 
 class OldTournamentController:
     """bbbb"""
-    pass
+
+    def __call__(self):
+        print("Dans le controller de Charger un tournoi")
+        print()
 
 class NewPlayersController:
     """ccc"""
-    pass
+
+    def __call__(self):
+        print("Dans le controller de Ajouter des joueurs")
+        print()
+        return Player()
 
 class OldPlayersController:
     """ddd"""
-    pass
+
+    def __call__(self):
+        print("Dans le controller de Charger une liste de joueurs")
+        print()
 
 class EndScreenController:
     """eee"""
-    pass
+
+    def __call__(self):
+        print("Au revoir !")
+        print()
 
 if __name__ == "__main__":
     app = ApplicationController()

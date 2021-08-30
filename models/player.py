@@ -1,8 +1,5 @@
 """Player."""
 
-from typing import List
-from tinydb import TinyDB
-
 
 class Player:
     """Players info."""
@@ -14,7 +11,7 @@ class Player:
         self.gender = gender                # Sexe
         self.ranking = ranking              # Classement
 
-player = Player(first_name='Bob', last_name='Dupont', date_of_birth= '12/02/1987',
+"""player = Player(first_name='Bob', last_name='Dupont', date_of_birth= '12/02/1987',
                 gender='M', ranking='1')
 print(player.first_name, player.last_name, player.date_of_birth, player.gender,
       player.ranking)
@@ -31,7 +28,7 @@ first_name = serialized_player['first_name']
 last_name = serialized_player['last_name']
 date_of_birth = serialized_player['date_of_birth']
 gender = serialized_player['gender']
-ranking = serialized_player['ranking']
+ranking = serialized_player['ranking']"""
 
 """db = TinyDB('db.json')
 player_table = db.table('player')
