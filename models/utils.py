@@ -31,9 +31,9 @@ class Menu:
     def __getitem__(self, choice):
         return self._entries[choice]
 
- if __name__ == "__main__":
-    menu = Menu()
+# if __name__ == "__main__":
+    """menu = Menu()
     menu.add("auto", "premiere option du menu", lambda: None)
     menu.add("auto", "seconde option du menu", lambda: None)
     menu.add("q", "derniere option du menu", lambda: None)
-    print(menu._entries)
+    print(menu._entries)"""

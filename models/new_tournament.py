@@ -1,4 +1,4 @@
-"""from  player import Player"""
+"""from  ..views.NewTournamentView import NewTournamentView"""
 
 """Game time"""
 
@@ -15,8 +15,14 @@ class Tournament:
         self.date = date
         self.players = players
         self.rounds = 4
+
+class Menu:
+    def __init__(self):
         self._entries = {}
-        self._entries = name, place, date
+
+    def add(self, name, place, date):
+
+        self._entries = Tournament(name, place, date)
 
     def __contains__(self, choice):
         return str(choice) in self._entries
@@ -29,14 +35,6 @@ class Tournament:
 
     def __str__(self):
         return str(self.name, self.place, self.date)
-
-
-if __name__ == "__main__":
-    menu = Tournament
-    menu.add("Nicolas", "paris", "12/02/1987")
-    menu.add("Axel", "toulouse", "21/08/09")
-    menu.add("Leslie", "paris", "je sais pas")
-    print(menu._entries)
 
 
 """fonction make pair players"""

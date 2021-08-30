@@ -20,6 +20,16 @@ class NewTournamentView:
                           "Voulez vous ")
             print()
             # valider le choix utilisateur
-            """if choice in self.menu:
+            if name in self.menu:
                 # retourner le choix de l'utilisateur
-                return self.menu[choice]"""
+                return self.menu[name]
+            if place in self.menu:
+                return self.menu[place]
+            if date in self.menu:
+                return self.menu[date]
+            if infos in self.menu:
+                return self.menu[infos]
+
+
+print(_display_menu)
+"""print(NewTournamentView.get_user_choice(display_menu))"""
