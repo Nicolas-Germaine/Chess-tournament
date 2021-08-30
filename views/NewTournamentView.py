@@ -31,5 +31,4 @@ class NewTournamentView:
                 return self.menu[infos]
 
 
-print(_display_menu)
-"""print(NewTournamentView.get_user_choice(display_menu))"""
+print(NewTournamentView._display_menu(self=None))
