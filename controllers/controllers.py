@@ -39,12 +39,13 @@ class HomeMenuController:
 class NewTournamentController:
     """aaaa"""
     def __init__(self):
-        self.models = Tournament(self.name, self.place, self.date)
+        self.models = Tournament(self._entries)
         self.view = NewTournamentView(self.menu)
 
     def __call__(self):
-        print("Vous allez devoir ajouter les informations pour un nouveau tournoi.")
-        print()
+        self.menu.add("auto", "Nouveau tournoi", NewTournamentController())
+
+        user_choice = self.view.get_user_choice()
 
 class OldTournamentController:
     """bbbb"""

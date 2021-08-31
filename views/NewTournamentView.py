@@ -16,7 +16,7 @@ class NewTournamentView:
             name = input("Nom du tournoi >> ")
             place = input("Lieu >>")
             date = input("date >>")
-            infos = input("Il va y avoir 4 rounds, et il vous faut 8 joueurs."
+            information = input("Il va y avoir 4 rounds, et il vous faut 8 joueurs."
                           "Voulez vous ")
             print()
             # valider le choix utilisateur
@@ -27,8 +27,8 @@ class NewTournamentView:
                 return self.menu[place]
             if date in self.menu:
                 return self.menu[date]
-            if infos in self.menu:
-                return self.menu[infos]
+            if information in self.menu:
+                return self.menu[information]
 
 
 print(NewTournamentView._display_menu(self=None))
