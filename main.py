@@ -1,7 +1,7 @@
 """Run."""
 
 from controllers.controllers import ApplicationController
-from views.player import View
+from views.PlayerView import View
 
 
 def main():

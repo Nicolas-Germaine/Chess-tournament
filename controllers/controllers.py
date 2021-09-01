@@ -1,8 +1,8 @@
 from ..models.utils import Menu
 from ..views.HomeMenuView import HomeMenuView
-from ..models.new_tournament import Tournament
-from ..models.player import Player
-from ..views.NewTournamentView import NewTournamentView
+from ..views.PlayerView import PlayerView
+from ..models.player import NewPlayers
+
 
 class ApplicationController:
     """Main controller."""
@@ -38,14 +38,10 @@ class HomeMenuController:
 
 class NewTournamentController:
     """aaaa"""
-    def __init__(self):
-        self.models = Tournament(self._entries)
-        self.view = NewTournamentView(self.menu)
 
     def __call__(self):
-        self.menu.add("auto", "Nouveau tournoi", NewTournamentController())
-
-        user_choice = self.view.get_user_choice()
+        print("Dans le controller de Nouveau tournoi")
+        print()
 
 class OldTournamentController:
     """bbbb"""
@@ -56,11 +52,21 @@ class OldTournamentController:
 
 class NewPlayersController:
     """ccc"""
+    def __init__(self):
+        self.info = NewPlayers()
+        self.view = PlayerView(self.info)
 
     def __call__(self):
-        print("Dans le controller de Ajouter des joueurs")
-        print()
-        return Player()
+        # 1. Construction d'une liste de joueur
+        self.info.add("auto", "premier joueur", PlayerView())
+        self.info.add("auto", "second joueur", PlayerView())
+        self.info.add("auto", "troisieme joueur", PlayerView())
+
+        # 2. Demander à la vue les inputs et de les collecter
+        user_input = self.view.information_player()
+
+        # 3. Pas tout compris
+        return user_input
 
 class OldPlayersController:
     """ddd"""
@@ -75,6 +81,7 @@ class EndScreenController:
     def __call__(self):
         print("Au revoir !")
         print()
+
 
 if __name__ == "__main__":
     app = ApplicationController()
