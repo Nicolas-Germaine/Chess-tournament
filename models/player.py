@@ -1,14 +1,15 @@
 
 class NewPlayers:
-    def __init__(self):
-        self._entries = {}
+    def __init__(self, first_name, last_name, date_of_birth, gender, ranking):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.date_of_birth = date_of_birth
+        self.gender = gender
+        self.ranking = ranking
 
-    def add(self, first_name, last_name, date_of_birth, gender, ranking):
-        self._entries = (first_name, last_name, date_of_birth, gender, ranking)
-
-    def info_player(self):
+    """def info_player(self):
         return f"Le joueur s'appelle {self.first_name} {self.last_name}, il/elle est née le {self.date_of_birth}" \
-               f" et il/elle est {self.ranking} au classement."
+               f" et il/elle est {self.ranking} au classement."""
 
 
 """player1 = NewPlayers("Nicolas", "Germaine", 34, "12/02/1987", 1)

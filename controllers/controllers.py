@@ -1,7 +1,8 @@
 from ..models.utils import Menu
 from ..views.HomeMenuView import HomeMenuView
 from ..views.PlayerView import PlayerView
-from ..models.player import NewPlayers
+from ..views.NewTournamentView import NewTournamentView
+"""from ..models.player import NewPlayers"""
 
 
 class ApplicationController:
@@ -38,10 +39,15 @@ class HomeMenuController:
 
 class NewTournamentController:
     """aaaa"""
+    def __init__(self):
+        """self.info = NewPlayers()"""
+        self.view = NewTournamentView()
 
     def __call__(self):
-        print("Dans le controller de Nouveau tournoi")
-        print()
+        user_input = self.view.information_tournament()
+        """print(user_input)"""
+
+        return HomeMenuController
 
 class OldTournamentController:
     """bbbb"""
@@ -53,20 +59,15 @@ class OldTournamentController:
 class NewPlayersController:
     """ccc"""
     def __init__(self):
-        self.info = NewPlayers()
-        self.view = PlayerView(self.info)
+        """self.info = NewPlayers()"""
+        self.view = PlayerView()
 
     def __call__(self):
-        # 1. Construction d'une liste de joueur
-        self.info.add("auto", "premier joueur", PlayerView())
-        self.info.add("auto", "second joueur", PlayerView())
-        self.info.add("auto", "troisieme joueur", PlayerView())
 
-        # 2. Demander à la vue les inputs et de les collecter
         user_input = self.view.information_player()
+        """print(user_input)"""
 
-        # 3. Pas tout compris
-        return user_input
+        return HomeMenuController
 
 class OldPlayersController:
     """ddd"""

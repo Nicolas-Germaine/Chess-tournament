@@ -8,15 +8,13 @@ TIME = ("Blitz", "Bullet", "Speed")
 class Tournament:
     """Information for a new tournament"""
 
-    def __init__(self, name, place, date, players=None):
+    def __init__(self, name, place, date):
         """Init information of tournament"""
         self.name = name
         self.place = place
         self.date = date
-        self.players = players
-        self.rounds = 4
 
-class Menu:
+"""class Menu:
     def __init__(self):
         self._entries = {}
 
@@ -34,7 +32,7 @@ class Menu:
         return f"Tournament({self.name}, {self.place}, {self.date})"
 
     def __str__(self):
-        return str(self.name, self.place, self.date)
+        return str(self.name, self.place, self.date)"""
 
 
 """fonction make pair players"""
