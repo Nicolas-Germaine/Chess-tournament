@@ -19,10 +19,9 @@ from pprint import pprint
 db = TinyDB('db.json')
 
 class PlayerView:
-    """Player game view."""
 
     def information_player(self):
-        """User view information for player creation."""
+
         list_player = db.table('8 players')
         nb = 0
 
