@@ -1,15 +1,14 @@
 from ..models.utils import Menu
 from ..views.HomeMenuView import HomeMenuView
-from ..views.PlayerView import PlayerView
+from ..views.PlayerView import Data_base
 from ..views.NewTournamentView import NewTournamentView
-"""from ..models.player import NewPlayers"""
 
 
 class ApplicationController:
     """Main controller."""
 
-    def __init__(self,):
-        """List of players and a view."""
+    def __init__(self):
+        """..."""
         self.controller = None
 
     def start(self):
@@ -60,11 +59,11 @@ class NewPlayersController:
     """ccc"""
     def __init__(self):
         """self.info = NewPlayers()"""
-        self.view = PlayerView()
+        self.view = Data_base()
 
     def __call__(self):
 
-        user_input = self.view.information_player()
+        """user_input = Data_base()"""
         """print(user_input)"""
 
         return HomeMenuController
