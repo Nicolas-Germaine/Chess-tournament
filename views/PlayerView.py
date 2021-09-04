@@ -4,7 +4,7 @@ db = TinyDB('db.json')
 
 """Base view."""
 
-class Data_base():
+class Data_base:
 
     player1 = NewPlayers(first_name=input("Tapez le prénom >> "),
                  last_name=input("Tapez le nom de famille >> "),

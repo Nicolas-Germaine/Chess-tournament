@@ -17,7 +17,7 @@ class NewTournamentView:
         print()
         print(">>>>> Il va y avoir 4 rounds, et il vous faut charger une liste de 8 joueurs. <<<<<")
         print()
-        tournament = Tournament(name, place, date)
-        new_tournament.append(tournament)
+        # tournament = Tournament(name, place, date)
+        new_tournament.extend([name,place,date])
 
         return new_tournament

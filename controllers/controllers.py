@@ -1,7 +1,8 @@
 from ..models.utils import Menu
 from ..views.HomeMenuView import HomeMenuView
-from ..views.PlayerView import Data_base
+# from ..views.PlayerView import Data_base
 from ..views.NewTournamentView import NewTournamentView
+from tinydb import TinyDB
 
 
 class ApplicationController:
@@ -44,8 +45,16 @@ class NewTournamentController:
 
     def __call__(self):
         user_input = self.view.information_tournament()
-        """print(user_input)"""
-
+        print(user_input)
+        db = TinyDB('db.json')
+        tournament_table = db.table('tournament_table')
+        serialized_player1 = {
+            'name': user_input[0],
+            'lieu': user_input[1],
+            'date': user_input[2],
+            }
+        tournament_table.insert(serialized_player1)
+        print("Tournoi crée")
         return HomeMenuController
 
 class OldTournamentController:
@@ -59,13 +68,13 @@ class NewPlayersController:
     """ccc"""
     def __init__(self):
         """self.info = NewPlayers()"""
-        self.view = Data_base()
+        # self.view = Data_base()
 
     def __call__(self):
 
         """user_input = Data_base()"""
         """print(user_input)"""
-
+    
         return HomeMenuController
 
 class OldPlayersController:
