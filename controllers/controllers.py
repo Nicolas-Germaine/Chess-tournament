@@ -1,7 +1,7 @@
 from ..models.utils import Menu
 from ..views.HomeMenuView import HomeMenuView
-# from ..views.PlayerView import Data_base
 from ..views.NewTournamentView import NewTournamentView
+from ..views.PlayerView import PlayerView
 from tinydb import TinyDB
 
 
@@ -68,14 +68,27 @@ class NewPlayersController:
     """ccc"""
     def __init__(self):
         """self.info = NewPlayers()"""
-        # self.view = Data_base()
+        self.view = PlayerView()
 
     def __call__(self):
-
-        """user_input = Data_base()"""
-        """print(user_input)"""
-    
+        print(">>>>> Vous allez devoir ajouter les informations pour 8 joueurs. <<<<<")
+        print()
+        user_input = self.view.information_player()
+        print(user_input)
+        db = TinyDB('db.json')
+        player_table = db.table('player_table')
+        serialized_player1 = {
+            'prenom': user_input[0],
+            'nom de famille': user_input[1],
+            'date de naissance': user_input[2],
+            'sexe': user_input[3],
+            'rang': user_input[4]
+        }
+        player_table.insert(serialized_player1)
+        print()
+        print(">>>>> 8 joueurs ajouter. <<<<<")
         return HomeMenuController
+
 
 class OldPlayersController:
     """ddd"""
