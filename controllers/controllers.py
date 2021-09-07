@@ -49,9 +49,9 @@ class NewTournamentController:
         db = TinyDB('db.json')
         tournament_table = db.table('tournament_table')
         serialized_player1 = {
-            'name': user_input[0],
-            'lieu': user_input[1],
-            'date': user_input[2],
+            'name': str(user_input)[0],
+            'lieu': str(user_input)[1],
+            'date': str(user_input)[2],
             }
         tournament_table.insert(serialized_player1)
         print("Tournoi crée")
@@ -78,11 +78,11 @@ class NewPlayersController:
         db = TinyDB('db.json')
         player_table = db.table('player_table')
         serialized_player1 = {
-            'prenom': user_input[0],
-            'nom de famille': user_input[1],
-            'date de naissance': user_input[2],
-            'sexe': user_input[3],
-            'rang': user_input[4]
+            'prenom': str(user_input)[0],
+            'nom de famille': str(user_input)[1],
+            'date de naissance': str(user_input)[2],
+            'sexe': str(user_input)[3],
+            'rang': str(user_input)[4]
         }
         player_table.insert(serialized_player1)
         print()

@@ -1,3 +1,5 @@
+import datetime
+
 """Base view."""
 
 class PlayerView:
@@ -16,10 +18,21 @@ class PlayerView:
 
             first_name = input("Tapez le prénom >> ")
             last_name = input("Tapez le nom de famille >> ")
-            date_of_birth = input("Tapez la date de naissance (ex 12/02/1987) >> ")
+            while True:
+                try:
+                    date_of_birth_str = input("Tapez la date de naissance (ex ->    00/00/0000) >> ")
+                    date = datetime.datetime.strptime(date_of_birth_str, "%d/%m/%Y")
+                    break
+                except ValueError:
+                    print("Oops!  Le format n'est pas valide.  Try again...")
             gender = input("Sexe ? (H/F) >> ")
-            ranking = input("Son rang ? >> ")
-            new_player.extend([first_name, last_name, date_of_birth, gender, ranking])
+            while True:
+                try:
+                    ranking = int(input("Son rang ? (ex ->  11) >> "))
+                    break
+                except ValueError:
+                    print("Oops!  Le format n'est pas valide.  Try again...")
+            new_player.extend([first_name, last_name, date_of_birth_str, gender, ranking])
             nb += 1
 
         return new_player
