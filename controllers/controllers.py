@@ -55,6 +55,7 @@ class NewTournamentController:
             }
         tournament_table.insert(serialized_player1)
         print("Tournoi crée")
+        
         return HomeMenuController
 
 class OldTournamentController:
