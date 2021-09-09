@@ -46,7 +46,7 @@ class NewTournamentController:
     def __call__(self):
         user_input = self.view.information_tournament()
         print(user_input)
-        db = TinyDB('db.json')
+        db = TinyDB("Chess-tournament/db.json")
         tournament_table = db.table('tournament_table')
         serialized_player1 = {
             'name': user_input[0],
@@ -76,7 +76,7 @@ class NewPlayersController:
         print()
         user_input = self.view.information_player()
         print(user_input)
-        db = TinyDB('db.json')
+        db = TinyDB('Chess-tournament/db.json')
         player_table = db.table('player_table')
         
         serialized_player1 = {
