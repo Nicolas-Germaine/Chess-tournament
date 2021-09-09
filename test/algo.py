@@ -1,6 +1,6 @@
 
 
-from tinydb import TinyDB, Query
+from tinydb import TinyDB, Query,where
 db = TinyDB('db.json')
 
 
@@ -33,4 +33,5 @@ insert_players1()
 insert_players2()"""
 
 #   Je voudrais print mon dico entier et pouvoir aussi print certains elements du dico
-print(db.all())
+table_player = db.table('players')
+print(table_player.all())
