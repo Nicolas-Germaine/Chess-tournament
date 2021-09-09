@@ -14,7 +14,7 @@ class PlayerView:
         new_player = []
         nb = 0
 
-        while nb < 2:
+        while nb < 8:
 
             first_name = input("Tapez le prénom >> ")
             last_name = input("Tapez le nom de famille >> ")

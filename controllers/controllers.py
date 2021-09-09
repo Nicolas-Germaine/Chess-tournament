@@ -78,6 +78,7 @@ class NewPlayersController:
         print(user_input)
         db = TinyDB('db.json')
         player_table = db.table('player_table')
+        
         serialized_player1 = {
             'prenom': user_input[0],
             'nom de famille': user_input[1],
@@ -86,6 +87,69 @@ class NewPlayersController:
             'rang': user_input[4]
             }
         player_table.insert(serialized_player1)
+
+        serialized_player2 = {
+            'prenom': user_input[5],
+            'nom de famille': user_input[6],
+            'date de naissance': user_input[7],
+            'sexe': user_input[8],
+            'rang': user_input[9]
+            }
+        player_table.insert(serialized_player2)
+
+        serialized_player3 = {
+            'prenom': user_input[10],
+            'nom de famille': user_input[11],
+            'date de naissance': user_input[12],
+            'sexe': user_input[13],
+            'rang': user_input[14]
+            }
+        player_table.insert(serialized_player3)
+
+        serialized_player4 = {
+            'prenom': user_input[15],
+            'nom de famille': user_input[16],
+            'date de naissance': user_input[17],
+            'sexe': user_input[18],
+            'rang': user_input[19]
+            }
+        player_table.insert(serialized_player4)
+
+        serialized_player5 = {
+            'prenom': user_input[20],
+            'nom de famille': user_input[21],
+            'date de naissance': user_input[22],
+            'sexe': user_input[23],
+            'rang': user_input[24]
+            }
+        player_table.insert(serialized_player5)
+
+        serialized_player6 = {
+            'prenom': user_input[25],
+            'nom de famille': user_input[26],
+            'date de naissance': user_input[27],
+            'sexe': user_input[28],
+            'rang': user_input[29]
+            }
+        player_table.insert(serialized_player6)
+
+        serialized_player7 = {
+            'prenom': user_input[30],
+            'nom de famille': user_input[31],
+            'date de naissance': user_input[32],
+            'sexe': user_input[33],
+            'rang': user_input[34]
+            }
+        player_table.insert(serialized_player7)
+
+        serialized_player8 = {
+            'prenom': user_input[35],
+            'nom de famille': user_input[36],
+            'date de naissance': user_input[37],
+            'sexe': user_input[38],
+            'rang': user_input[39]
+            }
+        player_table.insert(serialized_player8)
         print()
         print(">>>>> 8 joueurs ajouter. <<<<<")
         return HomeMenuController
