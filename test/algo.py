@@ -1,13 +1,12 @@
 
 
-from tinydb import TinyDB, Query, table
+from tinydb import TinyDB, Query,where
 db = TinyDB('db.json')
 
 
-"""def insert_tournament():
+def insert_tournament():
     tournament_table = db.table('tournament_table')
     tournament_table.insert({'name': 'Super tournoi', 'place': 'Toulouse', 'date': '21/12/2009'})
-"""
 
 def insert_players1():
     player_table = db.table('players')
@@ -29,36 +28,12 @@ def insert_players2():
         'rang': 2
         })
 
-#insert_tournament()
-#insert_players1()
-#insert_players2()
+"""insert_tournament()
+insert_players1()
+insert_players2()"""
 
-User = Query()
+#   Je voudrais print mon dico entier et pouvoir aussi print certains elements du dico
 table_player = db.table('players')
-table_tournament = db.table('tournament_table')
-player_prenom = db.table('prenom')
+print(table_player.all())
+print(table_player.all()[0]) # Pour afficher le premier joueur
 
-print(player_prenom)
-"""item = db.table('players')"""
-
-"""def search():
-    player1 = table_player.search(User.rang == 1)
-    player2 = table_player.search(User.rang == 2)
-    print(player1)
-    print(player2)
-    print(player1[0])"""
-
-#print(db.tables())
-"""print(db.table('players'[1]))"""
-
-#print(table_player.all())
-#print(table_player.search(User.rang == 2))
-#print(table_tournament.all())
-
-#item = table_player
-"""for k in item:
-    print(k)"""
-
-#print(item)
-
-#search()
