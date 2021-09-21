@@ -15,7 +15,8 @@ class Insert:
             'nom de famille': 'Germaine',
             'date de naissance': '12/02/1987',
             'sexe': 'H',
-            'rang': 1
+            'rang': 1,
+            'score': 0
             })
 
     def insert_players2():
@@ -25,7 +26,8 @@ class Insert:
             'nom de famille': 'Germaine',
             'date de naissance': '21/08/2009',
             'sexe': 'H',
-            'rang': 4
+            'rang': 4,
+            'score': 0
             })
 
     def insert_players3():
@@ -35,7 +37,8 @@ class Insert:
             'nom de famille': 'Renaults',
             'date de naissance': '08/10/1988',
             'sexe': 'F',
-            'rang': 3
+            'rang': 3,
+            'score': 0
             })
 
     def insert_players4():
@@ -45,7 +48,8 @@ class Insert:
             'nom de famille': 'Jesaisplus',
             'date de naissance': '04/06/1990',
             'sexe': 'H',
-            'rang': 7
+            'rang': 7,
+            'score': 0
             })
 
     def insert_players5():
@@ -55,7 +59,8 @@ class Insert:
             'nom de famille': 'Laborde',
             'date de naissance': '07/02/1987',
             'sexe': 'F',
-            'rang': 2
+            'rang': 2,
+            'score': 0
             })
 
     def insert_players6():
@@ -65,7 +70,8 @@ class Insert:
             'nom de famille': 'Pontiac',
             'date de naissance': '15/11/1991',
             'sexe': 'H',
-            'rang': 8
+            'rang': 8,
+            'score': 0
             })
 
     def insert_players7():
@@ -75,7 +81,8 @@ class Insert:
             'nom de famille': 'Cajon',
             'date de naissance': '07/05/1985',
             'sexe': 'H',
-            'rang': 5
+            'rang': 5,
+            'score': 0
             })
 
     def insert_players8():
@@ -85,7 +92,8 @@ class Insert:
             'nom de famille': 'Claure',
             'date de naissance': '18/03/1986',
             'sexe': 'F',
-            'rang': 6
+            'rang': 6,
+            'score': 0
             })
 
 
@@ -204,7 +212,7 @@ def start():
 
 class Round1:
 
-    
+
     
     def match1():
 
@@ -214,10 +222,13 @@ class Round1:
         premier_match = float(input('Qui a gagner le premier match ? ( 1 pour le joueur 1, 2 pour le joueur 5 joueur, 0.5 pour une égalité. ) >>>>> '))
         if premier_match == 1:
             (print(f'{Name.player1_prenom()} WIN, il/elle gagne 1 point'))
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # Je voudrais mettre à jour le score de player 1 dans la BD 
         elif premier_match == 2:
             (print(f'{Name.player5_prenom()} WIN, il/elle gagne 1 point'))
-        else:
+            return Name.player1_prenom(),Ranking.player1_ranking(), 0, Name.player5_prenom(),Ranking.player5_ranking(), 1
+        elif premier_match == 0.5:
             (print(f'égalité entre {Name.player1_prenom()} et {Name.player5_prenom()}, les deux gagnes 0.5 points.'))
+            return Name.player1_prenom(),Ranking.player1_ranking(), 0.5, Name.player5_prenom(),Ranking.player5_ranking(), 0.5
         resultat_match1.extend([premier_match])
         return resultat_match1
         
@@ -230,10 +241,13 @@ class Round1:
         second_match = float(input('Qui a gagner le second match ? ( 1 pour le joueur 2, 2 pour le joueur 6 joueur, 0.5 pour une égalité. ) >>>>> '))
         if second_match == 1:
             (print(f'{Name.player2_prenom()} WIN, il/elle gagne 1 point'))
+            return Name.player2_prenom(),Ranking.player2_ranking(), 1, Name.player6_prenom(),Ranking.player6_ranking(), 0
         elif second_match == 2:
             (print(f'{Name.player6_prenom()} WIN, il/elle gagne 1 point'))
-        else:
+            return Name.player2_prenom(),Ranking.player2_ranking(), 0, Name.player6_prenom(),Ranking.player6_ranking(), 1
+        elif second_match == 0.5:
             (print(f'égalité entre {Name.player2_prenom()} et {Name.player6_prenom()}, les deux gagnes 0.5 points.'))
+            return Name.player2_prenom(),Ranking.player2_ranking(), 0.5, Name.player6_prenom(),Ranking.player6_ranking(), 0.5
         resultat_match2.extend([second_match])
         return resultat_match2
 
@@ -246,10 +260,13 @@ class Round1:
         troisieme_match = float(input('Qui a gagner le troisieme match ? ( 1 pour le joueur 3, 2 pour le joueur 7 joueur, 0.5 pour une égalité. ) >>>>> '))
         if troisieme_match == 1:
             (print(f'{Name.player3_prenom()} WIN, il/elle gagne 1 point'))
+            return Name.player3_prenom(),Ranking.player3_ranking(), 1, Name.player7_prenom(),Ranking.player7_ranking(), 0
         elif troisieme_match == 2:
             (print(f'{Name.player7_prenom()} WIN, il/elle gagne 1 point'))
-        else:
+            return Name.player3_prenom(),Ranking.player3_ranking(), 0, Name.player7_prenom(),Ranking.player7_ranking(), 1
+        elif troisieme_match == 0.5:
             (print(f'égalité entre {Name.player3_prenom()} et {Name.player7_prenom()}, les deux gagnes 0.5 points.'))
+            return Name.player3_prenom(),Ranking.player3_ranking(), 0.5, Name.player7_prenom(),Ranking.player7_ranking(), 0.5
         resultat_match3.extend([troisieme_match])
         return resultat_match3
     
@@ -261,18 +278,31 @@ class Round1:
         quatrieme_match = float(input('Qui a gagner le quatrieme match ? ( 1 pour le joueur 4, 2 pour le joueur 8 joueur, 0.5 pour une égalité. ) >>>>> '))
         if quatrieme_match == 1:
             (print(f'{Name.player4_prenom()} WIN, il/elle gagne 1 point'))
+            return Name.player4_prenom(),Ranking.player4_ranking(), 1, Name.player8_prenom(),Ranking.player8_ranking(), 0
         elif quatrieme_match == 2:
             (print(f'{Name.player8_prenom()} WIN, il/elle gagne 1 point'))
-        else:
+            return Name.player4_prenom(),Ranking.player4_ranking(), 0, Name.player8_prenom(),Ranking.player8_ranking(), 1
+        elif quatrieme_match == 0.5:
             (print(f'égalité entre {Name.player4_prenom()} et {Name.player8_prenom()}, les deux gagnes 0.5 points.'))
+            return Name.player4_prenom(),Ranking.player4_ranking(), 0.5, Name.player8_prenom(),Ranking.player8_ranking(), 0.5
         resultat_match4.extend([quatrieme_match])
         return resultat_match4
 
+class Round1Ranking:
+
+
+    def results():
+
+
+        classement = [Round1.match1(), Round1.match2(), Round1.match3(), Round1.match4()]
+        print(classement)
 
 
 
-start()
+
+"""start()
 print(Round1.match1())
 print(Round1.match2())
 print(Round1.match3())
-print(Round1.match4())
+print(Round1.match4())"""
+print(Round1Ranking.results())
