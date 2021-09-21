@@ -36,4 +36,3 @@ insert_players2()"""
 table_player = db.table('players')
 print(table_player.all())
 print(table_player.all()[0]) # Pour afficher le premier joueur
-
