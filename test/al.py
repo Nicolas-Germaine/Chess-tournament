@@ -1,5 +1,5 @@
 
-from tinydb import TinyDB, Query, table
+from tinydb import TinyDB, Query, table, where
 db = TinyDB('db.json')
 
 User = Query()
@@ -14,7 +14,6 @@ class Insert:
             'prenom': "Nicolas",
             'nom de famille': 'Germaine',
             'date de naissance': '12/02/1987',
-            'sexe': 'H',
             'rang': 1,
             'score': 0
             })
@@ -142,8 +141,8 @@ class Ranking:
 class Name:
     def player1_prenom():
         result = table_player.search(User.rang == 1)
-        result = [r['prenom'] for r in result]
-        return result
+        # result = [r['prenom'] for r in result]
+        return result[0]['prenom']
 
     def player2_prenom():
         result = table_player.search(User.rang == 2)
@@ -222,6 +221,9 @@ class Round1:
         premier_match = float(input('Qui a gagner le premier match ? ( 1 pour le joueur 1, 2 pour le joueur 5 joueur, 0.5 pour une égalité. ) >>>>> '))
         if premier_match == 1:
             (print(f'{Name.player1_prenom()} WIN, il/elle gagne 1 point'))
+            resultat = table_player.search(User.prenom == Name.player1_prenom())
+            
+            print(resultat[0]['prenom'])
             return db.update_multiple([({'score': 1}, where('score') == '0')])  # Je voudrais mettre à jour le score de player 1 dans la BD 
         elif premier_match == 2:
             (print(f'{Name.player5_prenom()} WIN, il/elle gagne 1 point'))
