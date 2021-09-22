@@ -142,6 +142,8 @@ class Name:
     def player1_prenom():
         result = table_player.search(User.rang == 1)
         # result = [r['prenom'] for r in result]
+        ### Pour retourner le prenom ou autre pas besoin de faire une liste comprehension c'est gourmant en term de memoire.
+        ### faire le pour les autre fonction
         return result[0]['prenom']
 
     def player2_prenom():
@@ -221,9 +223,13 @@ class Round1:
         premier_match = float(input('Qui a gagner le premier match ? ( 1 pour le joueur 1, 2 pour le joueur 5 joueur, 0.5 pour une égalité. ) >>>>> '))
         if premier_match == 1:
             (print(f'{Name.player1_prenom()} WIN, il/elle gagne 1 point'))
+            #### requette pour selection du player 1
             resultat = table_player.search(User.prenom == Name.player1_prenom())
-            
-            print(resultat[0]['prenom'])
+            #### Affectation ou update du score
+            """Le champs score n'existe pas dans ta bd il va falloir que tu reprenne la creation du db.json
+            Pour faire mon exemple j'ai du ajouter manuellement"""
+            resultat[0]['score'] = 1
+            print(resultat[0]['score'])
             return db.update_multiple([({'score': 1}, where('score') == '0')])  # Je voudrais mettre à jour le score de player 1 dans la BD 
         elif premier_match == 2:
             (print(f'{Name.player5_prenom()} WIN, il/elle gagne 1 point'))
