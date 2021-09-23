@@ -14,6 +14,7 @@ class Insert:
             'prenom': "Nicolas",
             'nom de famille': 'Germaine',
             'date de naissance': '12/02/1987',
+            'sexe': 'H',
             'rang': 1,
             'score': 0
             })
@@ -148,38 +149,38 @@ class Name:
 
     def player2_prenom():
         result = table_player.search(User.rang == 2)
-        result = [r['prenom'] for r in result]
-        return result
+        #result = [r['prenom'] for r in result]
+        return result[0]['prenom']
 
     def player3_prenom():
         result = table_player.search(User.rang == 3)
-        result = [r['prenom'] for r in result]
-        return result
+        #result = [r['prenom'] for r in result]
+        return result[0]['prenom']
 
     def player4_prenom():
         result = table_player.search(User.rang == 4)
-        result = [r['prenom'] for r in result]
-        return result
+        #result = [r['prenom'] for r in result]
+        return result[0]['prenom']
 
     def player5_prenom():
         result = table_player.search(User.rang == 5)
-        result = [r['prenom'] for r in result]
-        return result
+        #result = [r['prenom'] for r in result]
+        return result[0]['prenom']
 
     def player6_prenom():
         result = table_player.search(User.rang == 6)
-        result = [r['prenom'] for r in result]
-        return result
+        #result = [r['prenom'] for r in result]
+        return result[0]['prenom']
 
     def player7_prenom():
         result = table_player.search(User.rang == 7)
-        result = [r['prenom'] for r in result]
-        return result
+        #result = [r['prenom'] for r in result]
+        return result[0]['prenom']
 
     def player8_prenom():
         result = table_player.search(User.rang == 8)
-        result = [r['prenom'] for r in result]
-        return result
+        #result = [r['prenom'] for r in result]
+        return result[0]['prenom']
 
 
 def full_insert():
@@ -193,14 +194,15 @@ def full_insert():
     Insert.insert_players7() # A commenter apres la premiere utilisation
     Insert.insert_players8() # A commenter apres la premiere utilisation
 
-print()
-print(f'Le premier match opposera {Name.player1_prenom()} qui est au rang {Ranking.player1_ranking()} à {Name.player5_prenom()} qui est au rang {Ranking.player5_ranking()} !! ')
-print(f'Le second match opposera {Name.player2_prenom()} qui est au rang {Ranking.player2_ranking()} à {Name.player6_prenom()} qui est au rang {Ranking.player6_ranking()} !! ')
-print(f'Le troisieme match opposera {Name.player3_prenom()} qui est au rang {Ranking.player3_ranking()} à {Name.player7_prenom()} qui est au rang {Ranking.player7_ranking()} !! ')
-print(f'Le quatrieme match opposera {Name.player4_prenom()} qui est au rang {Ranking.player4_ranking()} à {Name.player8_prenom()} qui est au rang {Ranking.player8_ranking()} !! ')
-print()
 
 def start():
+
+    print()
+    print(f'Le premier match opposera {Name.player1_prenom()} qui est au rang {Ranking.player1_ranking()} à {Name.player5_prenom()} qui est au rang {Ranking.player5_ranking()} !! ')
+    print(f'Le second match opposera {Name.player2_prenom()} qui est au rang {Ranking.player2_ranking()} à {Name.player6_prenom()} qui est au rang {Ranking.player6_ranking()} !! ')
+    print(f'Le troisieme match opposera {Name.player3_prenom()} qui est au rang {Ranking.player3_ranking()} à {Name.player7_prenom()} qui est au rang {Ranking.player7_ranking()} !! ')
+    print(f'Le quatrieme match opposera {Name.player4_prenom()} qui est au rang {Ranking.player4_ranking()} à {Name.player8_prenom()} qui est au rang {Ranking.player8_ranking()} !! ')
+    print()
 
     Question1 = int(input('>>>>> Prêt ? (répondre 1 pour Oui, 2 pour Non.) <<<<<   '))
     if Question1 == 1:
@@ -226,15 +228,16 @@ class Round1:
             #### requette pour selection du player 1
             #### Affectation ou update du score
             resultat = table_player.update({'score':1},User.prenom == Name.player1_prenom())
-            
-            
-            return db.update_multiple([({'score': 1}, where('score') == '0')])  # Je voudrais mettre à jour le score de player 1 dans la BD 
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         elif premier_match == 2:
             (print(f'{Name.player5_prenom()} WIN, il/elle gagne 1 point'))
-            return Name.player1_prenom(),Ranking.player1_ranking(), 0, Name.player5_prenom(),Ranking.player5_ranking(), 1
+            resultat = table_player.update({'score':1},User.prenom == Name.player5_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         elif premier_match == 0.5:
             (print(f'égalité entre {Name.player1_prenom()} et {Name.player5_prenom()}, les deux gagnes 0.5 points.'))
-            return Name.player1_prenom(),Ranking.player1_ranking(), 0.5, Name.player5_prenom(),Ranking.player5_ranking(), 0.5
+            resultat1 = table_player.update({'score':0.5},User.prenom == Name.player1_prenom())
+            resultat2 = table_player.update({'score':0.5},User.prenom == Name.player5_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         resultat_match1.extend([premier_match])
         return resultat_match1
         
@@ -247,13 +250,17 @@ class Round1:
         second_match = float(input('Qui a gagner le second match ? ( 1 pour le joueur 2, 2 pour le joueur 6 joueur, 0.5 pour une égalité. ) >>>>> '))
         if second_match == 1:
             (print(f'{Name.player2_prenom()} WIN, il/elle gagne 1 point'))
-            return Name.player2_prenom(),Ranking.player2_ranking(), 1, Name.player6_prenom(),Ranking.player6_ranking(), 0
+            resultat = table_player.update({'score':1},User.prenom == Name.player2_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         elif second_match == 2:
             (print(f'{Name.player6_prenom()} WIN, il/elle gagne 1 point'))
-            return Name.player2_prenom(),Ranking.player2_ranking(), 0, Name.player6_prenom(),Ranking.player6_ranking(), 1
+            resultat = table_player.update({'score':1},User.prenom == Name.player6_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         elif second_match == 0.5:
             (print(f'égalité entre {Name.player2_prenom()} et {Name.player6_prenom()}, les deux gagnes 0.5 points.'))
-            return Name.player2_prenom(),Ranking.player2_ranking(), 0.5, Name.player6_prenom(),Ranking.player6_ranking(), 0.5
+            resultat1 = table_player.update({'score':0.5},User.prenom == Name.player2_prenom())
+            resultat2 = table_player.update({'score':0.5},User.prenom == Name.player6_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         resultat_match2.extend([second_match])
         return resultat_match2
 
@@ -266,13 +273,17 @@ class Round1:
         troisieme_match = float(input('Qui a gagner le troisieme match ? ( 1 pour le joueur 3, 2 pour le joueur 7 joueur, 0.5 pour une égalité. ) >>>>> '))
         if troisieme_match == 1:
             (print(f'{Name.player3_prenom()} WIN, il/elle gagne 1 point'))
-            return Name.player3_prenom(),Ranking.player3_ranking(), 1, Name.player7_prenom(),Ranking.player7_ranking(), 0
+            resultat = table_player.update({'score':1},User.prenom == Name.player3_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         elif troisieme_match == 2:
             (print(f'{Name.player7_prenom()} WIN, il/elle gagne 1 point'))
-            return Name.player3_prenom(),Ranking.player3_ranking(), 0, Name.player7_prenom(),Ranking.player7_ranking(), 1
+            resultat = table_player.update({'score':1},User.prenom == Name.player7_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         elif troisieme_match == 0.5:
             (print(f'égalité entre {Name.player3_prenom()} et {Name.player7_prenom()}, les deux gagnes 0.5 points.'))
-            return Name.player3_prenom(),Ranking.player3_ranking(), 0.5, Name.player7_prenom(),Ranking.player7_ranking(), 0.5
+            resultat1 = table_player.update({'score':0.5},User.prenom == Name.player3_prenom())
+            resultat2 = table_player.update({'score':0.5},User.prenom == Name.player7_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         resultat_match3.extend([troisieme_match])
         return resultat_match3
     
@@ -284,13 +295,16 @@ class Round1:
         quatrieme_match = float(input('Qui a gagner le quatrieme match ? ( 1 pour le joueur 4, 2 pour le joueur 8 joueur, 0.5 pour une égalité. ) >>>>> '))
         if quatrieme_match == 1:
             (print(f'{Name.player4_prenom()} WIN, il/elle gagne 1 point'))
-            return Name.player4_prenom(),Ranking.player4_ranking(), 1, Name.player8_prenom(),Ranking.player8_ranking(), 0
+            resultat = table_player.update({'score':1},User.prenom == Name.player4_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         elif quatrieme_match == 2:
             (print(f'{Name.player8_prenom()} WIN, il/elle gagne 1 point'))
-            return Name.player4_prenom(),Ranking.player4_ranking(), 0, Name.player8_prenom(),Ranking.player8_ranking(), 1
+            resultat = table_player.update({'score':1},User.prenom == Name.player8_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         elif quatrieme_match == 0.5:
-            (print(f'égalité entre {Name.player4_prenom()} et {Name.player8_prenom()}, les deux gagnes 0.5 points.'))
-            return Name.player4_prenom(),Ranking.player4_ranking(), 0.5, Name.player8_prenom(),Ranking.player8_ranking(), 0.5
+            resultat1 = table_player.update({'score':0.5},User.prenom == Name.player4_prenom())
+            resultat2 = table_player.update({'score':0.5},User.prenom == Name.player8_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         resultat_match4.extend([quatrieme_match])
         return resultat_match4
 
@@ -303,12 +317,18 @@ class Round1Ranking:
         classement = [Round1.match1(), Round1.match2(), Round1.match3(), Round1.match4()]
         print(classement)
 
+def purchase():
+    
+    print()
+    Question1 = int(input(">>>>> Voulez vous continuer ? (répondre 1 pour Oui, 2 pour Non.) <<<<<   "))
+    if Question1 == 1:
+        print("Second round !!!")
+        print()
+    else:
+        print('Bye !!')
+        print()
 
-
-
-"""start()
-print(Round1.match1())
-print(Round1.match2())
-print(Round1.match3())
-print(Round1.match4())"""
-print(Round1Ranking.results())
+"""full_insert()
+start()
+Round1Ranking.results()
+purchase()"""
