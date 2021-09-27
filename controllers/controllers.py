@@ -2,6 +2,7 @@ from ..models.utils import Menu
 from ..views.HomeMenuView import HomeMenuView
 from ..views.NewTournamentView import NewTournamentView
 from ..views.PlayerView import PlayerView
+from ..views.RoundView import MakePairPlayer
 from tinydb import TinyDB
 
 
@@ -29,6 +30,7 @@ class HomeMenuController:
         self.menu.add("auto", "Charger un tournoi", OldTournamentController())
         self.menu.add("auto", "Ajouter des joueurs", NewPlayersController())
         self.menu.add("auto", "Charger une liste de joueurs", OldPlayersController())
+        self.menu.add("auto", "Start", Start()) # Ajout de la section Start pour faire les paires
         self.menu.add("q", "Quitter", EndScreenController())
 
         # Demander à la vue d'afficher le menu et collecte de réponse utilisateur
@@ -46,7 +48,7 @@ class NewTournamentController:
     def __call__(self):
         user_input = self.view.information_tournament()
         print(user_input)
-        db = TinyDB("Chess-tournament/db.json")
+        db = TinyDB("./Chess-tournament/db.json")
         tournament_table = db.table('tournament_table')
         serialized_player1 = {
             'name': user_input[0],
@@ -76,7 +78,7 @@ class NewPlayersController:
         print()
         user_input = self.view.information_player()
         print(user_input)
-        db = TinyDB('Chess-tournament/db.json')
+        db = TinyDB('./Chess-tournament/db.json')
         player_table = db.table('player_table')
         
         serialized_player1 = {
@@ -160,6 +162,17 @@ class OldPlayersController:
 
     def __call__(self):
         print("Dans le controller de Charger une liste de joueurs")
+        print()
+
+
+class Start:
+
+    def __init__(self):
+        # Comment faire en sorte que le prog lance le fichier RoundView correctement
+        self.view = MakePairPlayer()
+
+    def __call__(self):
+        print("Dans le controller de start")
         print()
 
 class EndScreenController:

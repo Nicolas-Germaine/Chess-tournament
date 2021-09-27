@@ -228,13 +228,19 @@ class Round1:
             #### requette pour selection du player 1
             #### Affectation ou update du score
             resultat = table_player.update({'score':1},User.prenom == Name.player1_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
             # return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         elif premier_match == 2:
             (print(f'{Name.player5_prenom()} WIN, il/elle gagne 1 point'))
             resultat = table_player.update({'score':1},User.prenom == Name.player5_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
+            resultat = table_player.update({'score':1},User.prenom == Name.player5_prenom())
             # return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         elif premier_match == 0.5:
             (print(f'égalité entre {Name.player1_prenom()} et {Name.player5_prenom()}, les deux gagnes 0.5 points.'))
+            resultat1 = table_player.update({'score':0.5},User.prenom == Name.player1_prenom())
+            resultat2 = table_player.update({'score':0.5},User.prenom == Name.player5_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
             resultat1 = table_player.update({'score':0.5},User.prenom == Name.player1_prenom())
             resultat2 = table_player.update({'score':0.5},User.prenom == Name.player5_prenom())
             # return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
@@ -251,13 +257,20 @@ class Round1:
         if second_match == 1:
             (print(f'{Name.player2_prenom()} WIN, il/elle gagne 1 point'))
             resultat = table_player.update({'score':1},User.prenom == Name.player2_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
+            resultat = table_player.update({'score':1},User.prenom == Name.player2_prenom())
             # return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         elif second_match == 2:
             (print(f'{Name.player6_prenom()} WIN, il/elle gagne 1 point'))
             resultat = table_player.update({'score':1},User.prenom == Name.player6_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
+            resultat = table_player.update({'score':1},User.prenom == Name.player6_prenom())
             # return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
         elif second_match == 0.5:
             (print(f'égalité entre {Name.player2_prenom()} et {Name.player6_prenom()}, les deux gagnes 0.5 points.'))
+            resultat1 = table_player.update({'score':0.5},User.prenom == Name.player2_prenom())
+            resultat2 = table_player.update({'score':0.5},User.prenom == Name.player6_prenom())
+            return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
             resultat1 = table_player.update({'score':0.5},User.prenom == Name.player2_prenom())
             resultat2 = table_player.update({'score':0.5},User.prenom == Name.player6_prenom())
             # return db.update_multiple([({'score': 1}, where('score') == '0')])  # mise à jour bd
@@ -318,7 +331,7 @@ class Round1Ranking:
         print(classement)
 
 def purchase():
-    
+
     print()
     Question1 = int(input(">>>>> Voulez vous continuer ? (répondre 1 pour Oui, 2 pour Non.) <<<<<   "))
     if Question1 == 1:

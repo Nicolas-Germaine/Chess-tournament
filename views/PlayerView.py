@@ -1,4 +1,5 @@
 import datetime
+from ..models.player import NewPlayers
 
 """Base view."""
 
@@ -20,8 +21,8 @@ class PlayerView:
             last_name = input("Tapez le nom de famille >> ")
             while True:
                 try:
-                    date_of_birth_str = input("Tapez la date de naissance (ex ->    00/00/0000) >> ")
-                    date = datetime.datetime.strptime(date_of_birth_str, "%d/%m/%Y")
+                    date_of_birth = input("Tapez la date de naissance (ex ->    00/00/0000) >> ")
+                    date = datetime.datetime.strptime(date_of_birth, "%d/%m/%Y")
                     break
                 except ValueError:
                     print("Oops!  Le format n'est pas valide.  Try again...")
@@ -32,7 +33,9 @@ class PlayerView:
                     break
                 except ValueError:
                     print("Oops!  Le format n'est pas valide.  Try again...")
-            new_player.extend([first_name, last_name, date_of_birth_str, gender, ranking])
+            info = NewPlayers(first_name,last_name,date_of_birth,gender,float(ranking))
+            new_player.append(info)
             nb += 1
+        new_player = sorted(new_player, key=lambda x: x.ranking)
 
         return new_player
