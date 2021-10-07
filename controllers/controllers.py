@@ -2,7 +2,7 @@ from ..models.utils import Menu
 from ..views.HomeMenuView import HomeMenuView
 from ..views.NewTournamentView import NewTournamentView
 from ..views.PlayerView import PlayerView
-from ..views.RoundView import MakePairPlayer
+from ..views.PairingView import Infos
 from tinydb import TinyDB
 
 
@@ -30,7 +30,7 @@ class HomeMenuController:
         self.menu.add("auto", "Charger un tournoi", OldTournamentController())
         self.menu.add("auto", "Ajouter des joueurs", NewPlayersController())
         self.menu.add("auto", "Charger une liste de joueurs", OldPlayersController())
-        self.menu.add("auto", "Start", Start()) # Ajout de la section Start pour faire les paires
+        #self.menu.add("auto", "Start", MakePairPlayer()) # Ajout de la section Start pour faire les paires
         self.menu.add("q", "Quitter", EndScreenController())
 
         # Demander à la vue d'afficher le menu et collecte de réponse utilisateur
@@ -82,79 +82,79 @@ class NewPlayersController:
         player_table = db.table('player_table')
         
         serialized_player1 = {
-            'prenom': user_input[0],
-            'nom de famille': user_input[1],
-            'date de naissance': user_input[2],
-            'sexe': user_input[3],
-            'rang': user_input[4]
+            'prenom': user_input[0].first_name,
+            'nom de famille': user_input[0].last_name,
+            'date de naissance': user_input[0].date_of_birth,
+            'sexe': user_input[0].gender,
+            'rang': user_input[0].ranking
             }
         player_table.insert(serialized_player1)
 
         serialized_player2 = {
-            'prenom': user_input[5],
-            'nom de famille': user_input[6],
-            'date de naissance': user_input[7],
-            'sexe': user_input[8],
-            'rang': user_input[9]
+            'prenom': user_input[1].first_name,
+            'nom de famille': user_input[1].last_name,
+            'date de naissance': user_input[1].date_of_birth,
+            'sexe': user_input[1].gender,
+            'rang': user_input[1].ranking
             }
         player_table.insert(serialized_player2)
 
         serialized_player3 = {
-            'prenom': user_input[10],
-            'nom de famille': user_input[11],
-            'date de naissance': user_input[12],
-            'sexe': user_input[13],
-            'rang': user_input[14]
+            'prenom': user_input[2].first_name,
+            'nom de famille': user_input[2].last_name,
+            'date de naissance': user_input[2].date_of_birth,
+            'sexe': user_input[2].gender,
+            'rang': user_input[2].ranking
             }
         player_table.insert(serialized_player3)
 
         serialized_player4 = {
-            'prenom': user_input[15],
-            'nom de famille': user_input[16],
-            'date de naissance': user_input[17],
-            'sexe': user_input[18],
-            'rang': user_input[19]
+            'prenom': user_input[3].first_name,
+            'nom de famille': user_input[3].last_name,
+            'date de naissance': user_input[3].date_of_birth,
+            'sexe': user_input[3].gender,
+            'rang': user_input[3].ranking
             }
         player_table.insert(serialized_player4)
 
         serialized_player5 = {
-            'prenom': user_input[20],
-            'nom de famille': user_input[21],
-            'date de naissance': user_input[22],
-            'sexe': user_input[23],
-            'rang': user_input[24]
+            'prenom': user_input[4].first_name,
+            'nom de famille': user_input[4].last_name,
+            'date de naissance': user_input[4].date_of_birth,
+            'sexe': user_input[4].gender,
+            'rang': user_input[4].ranking
             }
         player_table.insert(serialized_player5)
 
         serialized_player6 = {
-            'prenom': user_input[25],
-            'nom de famille': user_input[26],
-            'date de naissance': user_input[27],
-            'sexe': user_input[28],
-            'rang': user_input[29]
+            'prenom': user_input[5].first_name,
+            'nom de famille': user_input[5].last_name,
+            'date de naissance': user_input[5].date_of_birth,
+            'sexe': user_input[5].gender,
+            'rang': user_input[5].ranking
             }
         player_table.insert(serialized_player6)
 
         serialized_player7 = {
-            'prenom': user_input[30],
-            'nom de famille': user_input[31],
-            'date de naissance': user_input[32],
-            'sexe': user_input[33],
-            'rang': user_input[34]
+            'prenom': user_input[6].first_name,
+            'nom de famille': user_input[6].last_name,
+            'date de naissance': user_input[6].date_of_birth,
+            'sexe': user_input[6].gender,
+            'rang': user_input[6].ranking
             }
         player_table.insert(serialized_player7)
 
         serialized_player8 = {
-            'prenom': user_input[35],
-            'nom de famille': user_input[36],
-            'date de naissance': user_input[37],
-            'sexe': user_input[38],
-            'rang': user_input[39]
+            'prenom': user_input[7].first_name,
+            'nom de famille': user_input[7].last_name,
+            'date de naissance': user_input[7].date_of_birth,
+            'sexe': user_input[7].gender,
+            'rang': user_input[7].ranking
             }
         player_table.insert(serialized_player8)
         print()
         print(">>>>> 8 joueurs ajouter. <<<<<")
-        return HomeMenuController
+        return MakePairPlayer(user_input)
 
 
 class OldPlayersController:
@@ -165,15 +165,77 @@ class OldPlayersController:
         print()
 
 
-class Start:
+class MakePairPlayer:
 
-    def __init__(self):
-        # Comment faire en sorte que le prog lance le fichier RoundView correctement
-        self.view = MakePairPlayer()
+    def __init__(self, players):
+
+        self.players = players
+        self.view = Infos()
+
+    def first_round(self):
+
+        middle = len(self.players) // 2
+        groups = self.players[:middle], self.players[middle:]
+        matches = list(zip(groups[0], groups[1]))
+        print(matches)
+
+        ### appel de la view pour enregistrer les resultats et Print les resultats en console
+        return self.view.views_pairing(matches)
+
+    def other_round(self, playeround):
+        """
+        Associez le joueur 1 avec le joueur 2, le joueur 3 avec le joueur 4, et ainsi de suite.
+        Si le joueur 1 a déjà joué contre le joueur 2, associez-le plutôt au joueur 3.
+        """
+        groups = playeround[::2], playeround[1::2]
+        matches = list(zip(groups[0], groups[1]))
+
+        players_dispo = sorted(playeround)
+        # print("le testtt unique===", players_dispo)
+
+        for iteration in range(len(matches) - 1):
+            (player_1, player_2) = matches[iteration]
+            players_dispo.remove(player_1)
+
+            # Played against each other?
+            if player_2 in player_1.fight:
+                players_not_against = [p for p in players_dispo if p not in player_1.fight]
+
+                if not players_not_against:
+                    players_dispo.remove(player_2)
+                    # print("not players_not_againstnot players_not_againstnot players_not_against")
+                else:
+                    # print("players_not_against", players_not_against)
+                    figther = next(iter(sorted(players_not_against)))
+                    # print("figther===>", figther)
+                    matches[iteration] = (player_1, figther)
+
+                    players_dispo.remove(figther)
+                    # print("Matches possible ===", matches)
+                    groups2 = players_dispo[::2], players_dispo[1::2]
+
+                    matches2 = list(zip(groups2[0], groups2[1]))
+                    # print("Matches Matches 22===", matches2)
+                    matches[iteration + 1:] = matches2
+                    # print("possible Matches 22===", matches)
+
+        print("matches====>", matches)
+        return self.view.views_pairing(matches)
 
     def __call__(self):
-        print("Dans le controller de start")
-        print()
+        print("self.MakePairPlayer")
+        # Round 1
+        print("==================FIRST ROUND ======================")
+        round1 = self.first_round()
+        # Round 2
+        print("==================2E ROUND ======================")
+        round2 = self.other_round(round1)
+        # Round 3
+        print("==================3E ROUND ======================")
+        round3 = self.other_round(round2)
+        # Round 4
+        print("==================4E ROUND ======================")
+        round4 = self.other_round(round3)
 
 class EndScreenController:
     """eee"""

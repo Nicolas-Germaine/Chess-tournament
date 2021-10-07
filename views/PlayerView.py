@@ -33,9 +33,10 @@ class PlayerView:
                     break
                 except ValueError:
                     print("Oops!  Le format n'est pas valide.  Try again...")
-            info = NewPlayers(first_name,last_name,date_of_birth,gender,float(ranking))
+            info = NewPlayers(first_name,last_name,date_of_birth,gender,int(ranking))
             new_player.append(info)
             nb += 1
-        new_player = sorted(new_player, key=lambda x: x.ranking)
+        new_player = sorted(new_player)
 
         return new_player
+
