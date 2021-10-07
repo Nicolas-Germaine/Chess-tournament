@@ -173,52 +173,60 @@ class MakePairPlayer:
         self.view = Infos()
 
     def first_round(self):
-
-        middle = len(self.players) // 2
+        
+        middle = len(self.players)//2
         groups = self.players[:middle], self.players[middle:]
         matches = list(zip(groups[0], groups[1]))
         print(matches)
-
+        
         ### appel de la view pour enregistrer les resultats et Print les resultats en console
         return self.view.views_pairing(matches)
-
+        ### Trier les joueurs par nombre de point et par classement
+        ### Return les joueur
+        
     def other_round(self, playeround):
         """
-        Associez le joueur 1 avec le joueur 2, le joueur 3 avec le joueur 4, et ainsi de suite.
+        Associez le joueur 1 avec le joueur 2, le joueur 3 avec le joueur 4, et ainsi de suite. 
         Si le joueur 1 a déjà joué contre le joueur 2, associez-le plutôt au joueur 3.
         """
+        # print("first rounddddddd", playeround)
         groups = playeround[::2], playeround[1::2]
         matches = list(zip(groups[0], groups[1]))
+        
+        
+        available_players = sorted(playeround)
+        # print("le testtt unique===", available_players)
 
-        players_dispo = sorted(playeround)
-        # print("le testtt unique===", players_dispo)
-
-        for iteration in range(len(matches) - 1):
+        for iteration in range(len(matches)):
             (player_1, player_2) = matches[iteration]
-            players_dispo.remove(player_1)
-
-            # Played against each other?
+            available_players.remove(player_1)
+            
             if player_2 in player_1.fight:
-                players_not_against = [p for p in players_dispo if p not in player_1.fight]
+                possible_players = [p for p in available_players if p not in player_1.fight]
 
-                if not players_not_against:
-                    players_dispo.remove(player_2)
-                    # print("not players_not_againstnot players_not_againstnot players_not_against")
+
+                if not possible_players:
+                    available_players.remove(player_2)
+                    # print("not possible_playersnot possible_playersnot possible_players")
                 else:
-                    # print("players_not_against", players_not_against)
-                    figther = next(iter(sorted(players_not_against)))
-                    # print("figther===>", figther)
-                    matches[iteration] = (player_1, figther)
+                    # print("possible_players", possible_players)
+                    opponent = next(iter(sorted(possible_players)))
+                    # print("opponent===>", opponent)
+                    matches[iteration] = (player_1, opponent)
 
-                    players_dispo.remove(figther)
+                    available_players.remove(opponent)
                     # print("Matches possible ===", matches)
-                    groups2 = players_dispo[::2], players_dispo[1::2]
+                    groups2 = available_players[::2], available_players[1::2]
 
                     matches2 = list(zip(groups2[0], groups2[1]))
                     # print("Matches Matches 22===", matches2)
-                    matches[iteration + 1:] = matches2
+                    matches[iteration+1:] = matches2
                     # print("possible Matches 22===", matches)
 
+                    ### appel de la view pour enregistrer les resultats et Print les resultats en console
+            # self.view.views_pairing(matches)
+                    ### Trier les joueurs par nombre de point et par classement
+                    ### Return les joueur
         print("matches====>", matches)
         return self.view.views_pairing(matches)
 
