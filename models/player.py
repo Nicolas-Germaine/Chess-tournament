@@ -22,13 +22,10 @@ class NewPlayers:
 
         return (-self._point, self._ranking) < (-autre._point, autre._ranking)
 
-    @property
-    def ranking(self):
-        return self._ranking
 
     def __str__(self):
         """Used in print"""
-        return f"{self.first_name} {self._point: >10} {self._ranking: >4}"
+        return f"{self.first_name}"
 
     __repr__ = __str__
 

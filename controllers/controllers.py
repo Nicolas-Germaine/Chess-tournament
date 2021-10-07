@@ -194,39 +194,34 @@ class MakePairPlayer:
         matches = list(zip(groups[0], groups[1]))
         
         
-        available_players = sorted(playeround)
-        # print("le testtt unique===", available_players)
+        availables = sorted(playeround)
+        # print("le testtt unique===", availables)
 
-        for iteration in range(len(matches)):
-            (player_1, player_2) = matches[iteration]
-            available_players.remove(player_1)
+        for item in range(len(matches)):
+            (player_1, player_2) = matches[item]
+            availables.remove(player_1)
             
             if player_2 in player_1.fight:
-                possible_players = [p for p in available_players if p not in player_1.fight]
+                possibles = [p for p in availables if p not in player_1.fight]
 
 
-                if not possible_players:
-                    available_players.remove(player_2)
-                    # print("not possible_playersnot possible_playersnot possible_players")
+                if not possibles:
+                    availables.remove(player_2)
+                    # print("not possiblesnot possiblesnot possibles")
                 else:
-                    # print("possible_players", possible_players)
-                    opponent = next(iter(sorted(possible_players)))
-                    # print("opponent===>", opponent)
-                    matches[iteration] = (player_1, opponent)
+                    # print("possibles", possibles)
+                    figther = next(iter(sorted(possibles)))
+                    # print("figther===>", figther)
+                    matches[item] = (player_1, figther)
 
-                    available_players.remove(opponent)
+                    availables.remove(figther)
                     # print("Matches possible ===", matches)
-                    groups2 = available_players[::2], available_players[1::2]
+                    groups2 = availables[::2], availables[1::2]
 
                     matches2 = list(zip(groups2[0], groups2[1]))
                     # print("Matches Matches 22===", matches2)
-                    matches[iteration+1:] = matches2
+                    matches[item+1:] = matches2
                     # print("possible Matches 22===", matches)
-
-                    ### appel de la view pour enregistrer les resultats et Print les resultats en console
-            # self.view.views_pairing(matches)
-                    ### Trier les joueurs par nombre de point et par classement
-                    ### Return les joueur
         print("matches====>", matches)
         return self.view.views_pairing(matches)
 
