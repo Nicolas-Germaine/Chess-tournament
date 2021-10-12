@@ -19,6 +19,7 @@ class PlayerView:
 
             first_name = input("Tapez le prénom >> ")
             last_name = input("Tapez le nom de famille >> ")
+            tournament = input("Nom du tournoi >> ")
             while True:
                 try:
                     date_of_birth = input("Tapez la date de naissance (ex ->    00/00/0000) >> ")
@@ -33,8 +34,7 @@ class PlayerView:
                     break
                 except ValueError:
                     print("Oops!  Le format n'est pas valide.  Try again...")
-            tournament = input("Nom du tournoi >> ")
-            info = NewPlayers(first_name,last_name,date_of_birth,gender,int(ranking),tournament)
+            info = NewPlayers(first_name,last_name,date_of_birth,gender,int(tournament),int(ranking))
             new_player.append(info)
             nb += 1
         new_player = sorted(new_player)
