@@ -69,9 +69,6 @@ class NewTournamentController:
 class OldTournamentController:
     """bbbb"""
 
-    def __init__(self):
-        self.view = Tournament.list_of_tournament(list)
-
     def __call__(self):
         Tournament.list_of_tournament(list)
 
@@ -96,8 +93,7 @@ class NewPlayersController:
             'nom de famille': user_input[0].last_name,
             'date de naissance': user_input[0].date_of_birth,
             'sexe': user_input[0].gender,
-            'nom du tournoi': user_input[0].tournament,
-            'rang': user_input[0].ranking
+            'rang': user_input[0].ranking,
         }
         player_table.insert(serialized_player1)
 
@@ -106,8 +102,7 @@ class NewPlayersController:
             'nom de famille': user_input[1].last_name,
             'date de naissance': user_input[1].date_of_birth,
             'sexe': user_input[1].gender,
-            'nom du tournoi': user_input[1].tournament,
-            'rang': user_input[1].ranking
+            'rang': user_input[1].ranking,
         }
         player_table.insert(serialized_player2)
 
@@ -116,8 +111,7 @@ class NewPlayersController:
             'nom de famille': user_input[2].last_name,
             'date de naissance': user_input[2].date_of_birth,
             'sexe': user_input[2].gender,
-            'nom du tournoi': user_input[2].tournament,
-            'rang': user_input[2].ranking
+            'rang': user_input[2].ranking,
         }
         player_table.insert(serialized_player3)
 
@@ -126,8 +120,7 @@ class NewPlayersController:
             'nom de famille': user_input[3].last_name,
             'date de naissance': user_input[3].date_of_birth,
             'sexe': user_input[3].gender,
-            'nom du tournoi': user_input[3].tournament,
-            'rang': user_input[3].ranking
+            'rang': user_input[3].ranking,
         }
         player_table.insert(serialized_player4)
 
@@ -136,8 +129,7 @@ class NewPlayersController:
             'nom de famille': user_input[4].last_name,
             'date de naissance': user_input[4].date_of_birth,
             'sexe': user_input[4].gender,
-            'nom du tournoi': user_input[4].tournament,
-            'rang': user_input[4].ranking
+            'rang': user_input[4].ranking,
         }
         player_table.insert(serialized_player5)
 
@@ -146,8 +138,7 @@ class NewPlayersController:
             'nom de famille': user_input[5].last_name,
             'date de naissance': user_input[5].date_of_birth,
             'sexe': user_input[5].gender,
-            'nom du tournoi': user_input[5].tournament,
-            'rang': user_input[5].ranking
+            'rang': user_input[5].ranking,
         }
         player_table.insert(serialized_player6)
 
@@ -156,8 +147,7 @@ class NewPlayersController:
             'nom de famille': user_input[6].last_name,
             'date de naissance': user_input[6].date_of_birth,
             'sexe': user_input[6].gender,
-            'nom du tournoi': user_input[6].tournament,
-            'rang': user_input[6].ranking
+            'rang': user_input[6].ranking,
         }
         player_table.insert(serialized_player7)
 
@@ -166,8 +156,7 @@ class NewPlayersController:
             'nom de famille': user_input[7].last_name,
             'date de naissance': user_input[7].date_of_birth,
             'sexe': user_input[7].gender,
-            'nom du tournoi': user_input[7].tournament,
-            'rang': user_input[7].ranking
+            'rang': user_input[7].ranking,
         }
         player_table.insert(serialized_player8)
         print()
