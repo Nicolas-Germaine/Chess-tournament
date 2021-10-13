@@ -1,4 +1,4 @@
-from ..controllers.controllers import MakePairPlayer
+#from ..controllers.controllers import MakePairPlayer
 from tinydb import TinyDB
 
 db = TinyDB("./Chess-tournament/db.json")
@@ -15,12 +15,12 @@ class Tournament:
         choice = input("Entrez 1 pour le premier tournoi, 2 pour le second... >>> ")
         tournament.append(choice)
 
-        if tournament == ['1']:
+        """if tournament == ['1']:
             contents = [item['prenom'] for item in db.table('player_table').all()]
             print(f'Les players sont >>> {contents}')
         else:
             print('Oops...')
-            return MakePairPlayer(contents)
+            return MakePairPlayer(contents)"""
 
 
 
