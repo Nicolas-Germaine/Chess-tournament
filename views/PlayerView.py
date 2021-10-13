@@ -1,7 +1,11 @@
 import datetime
 from ..models.player import NewPlayers
+from tinydb import TinyDB
 
 """Base view."""
+
+db = TinyDB("./Chess-tournament/db.json")
+tournament_table = db.table('tournament_table')
 
 class PlayerView:
 
@@ -39,4 +43,21 @@ class PlayerView:
         new_player = sorted(new_player)
 
         return new_player
+
+    def list_of_tournament(self):
+
+        list_tournament = []
+        tournament = []
+        contents = [item['name'] for item in db.table('tournament_table').all()]
+        #print(f"Liste des tournois dispo >>> {contents}")
+        contents.append(list_tournament)
+
+        choice = input("Entrez 1 pour lier les joueurs au premier tournoi, 2 pour le second, etc... >>> ")
+        tournament.append(choice)
+
+        if tournament == ['1']:
+            contents = [item['prenom'] for item in db.table('player_table').all()]
+            print(f'Les players sont >>> {contents}')
+        else:
+            print('Oops...')
 

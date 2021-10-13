@@ -161,6 +161,9 @@ class NewPlayersController:
         player_table.insert(serialized_player8)
         print()
         print(">>>>> 8 joueurs ajouter. <<<<<")
+        contents = [item['name'] for item in db.table('tournament_table').all()]
+        print(f"Liste des tournois dispo >>> {contents}")
+        print()
         return MakePairPlayer(user_input)
 
 
