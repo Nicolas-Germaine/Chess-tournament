@@ -47,14 +47,13 @@ class PlayerView:
     def list_of_tournament(self):
 
         list_tournament = []
-        tournament = []
+        new_player = PlayerView.information_player
         contents = [item['name'] for item in db.table('tournament_table').all()]
         print(f"Liste des tournois dispo >>> {contents}")
         contents.append(list_tournament)
 
         choice = input("Rentrez le nom du tournoi >>> ")
-        tournament.append(choice)
-        db.update({'tournament': choice}, Query().choice.exists())
 
-
+        table_tournament = db.table('tournament_table')
+        table_tournament.update({'players': new_player},Query().name==choice)
 

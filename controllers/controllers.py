@@ -58,6 +58,7 @@ class NewTournamentController:
             'name': user_input[0],
             'lieu': user_input[1],
             'date': user_input[2],
+            'players': [],
         }
         tournament_table.insert(serialized_player1)
         print("Tournoi crée")
