@@ -1,6 +1,7 @@
 import datetime
 from ..models.player import NewPlayers
-from tinydb import TinyDB, Query
+from tinydb import TinyDB, Query,where
+import json
 
 """Base view."""
 
@@ -41,19 +42,24 @@ class PlayerView:
             new_player.append(info)
             nb += 1
         new_player = sorted(new_player)
+        self.list_of_tournament(new_player)
 
         return new_player
 
-    def list_of_tournament(self):
-
+    def list_of_tournament(self, new_player):
+        
         list_tournament = []
-        new_player = PlayerView.information_player
+        # new_player = self.information_player()
+        new_player = f'{new_player}'
+        print("new_player====", new_player)
         contents = [item['name'] for item in db.table('tournament_table').all()]
         print(f"Liste des tournois dispo >>> {contents}")
         contents.append(list_tournament)
 
-        choice = input("Rentrez le nom du tournoi >>> ")
+        choice = str(input("Rentrez le nom du tournoi >>> "))
 
         table_tournament = db.table('tournament_table')
-        table_tournament.update({'players': new_player},Query().name==choice)
+        # table_tournament.update({'players': new_player},Query().name==choice)
+        resultat = table_tournament.update_multiple([({'players': new_player}, where("name") == choice)])
+        print(resultat)
 

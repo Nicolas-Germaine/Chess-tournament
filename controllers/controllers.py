@@ -85,8 +85,8 @@ class NewPlayersController:
         print()
         user_input = self.view.information_player()
         print(user_input)
-        user_choice = self.view.list_of_tournament()
-        print(user_choice)
+        # user_choice = self.view.list_of_tournament()
+        # print(user_choice)
         db = TinyDB('./Chess-tournament/db.json')
         player_table = db.table('player_table')
 
