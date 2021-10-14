@@ -95,7 +95,7 @@ class NewPlayersController:
             'date de naissance': user_input[0].date_of_birth,
             'sexe': user_input[0].gender,
             'rang': user_input[0].ranking,
-            'tournament': user_choice[0].tournament
+
         }
         player_table.insert(serialized_player1)
 
@@ -105,7 +105,7 @@ class NewPlayersController:
             'date de naissance': user_input[1].date_of_birth,
             'sexe': user_input[1].gender,
             'rang': user_input[1].ranking,
-            'tournament': user_choice[1].tournament
+
         }
         player_table.insert(serialized_player2)
 
@@ -115,7 +115,7 @@ class NewPlayersController:
             'date de naissance': user_input[2].date_of_birth,
             'sexe': user_input[2].gender,
             'rang': user_input[2].ranking,
-            'tournament': user_choice[2].tournament
+
         }
         player_table.insert(serialized_player3)
 
@@ -125,7 +125,7 @@ class NewPlayersController:
             'date de naissance': user_input[3].date_of_birth,
             'sexe': user_input[3].gender,
             'rang': user_input[3].ranking,
-            'tournament': user_choice[3].tournament
+
         }
         """player_table.insert(serialized_player4)
 
