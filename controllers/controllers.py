@@ -33,7 +33,6 @@ class HomeMenuController:
         self.menu.add("auto", "Charger un tournoi", OldTournamentController())
         self.menu.add("auto", "Ajouter des joueurs", NewPlayersController())
         self.menu.add("auto", "Charger une liste de joueurs", OldPlayersController())
-        # self.menu.add("auto", "Start", MakePairPlayer()) # Ajout de la section Start pour faire les paires
         self.menu.add("q", "Quitter", EndScreenController())
 
         # Demander à la vue d'afficher le menu et collecte de réponse utilisateur
@@ -85,6 +84,8 @@ class NewPlayersController:
         print()
         user_input = self.view.information_player()
         print(user_input)
+        user_choice = self.view.list_of_tournament()
+        print(user_choice)
         db = TinyDB('./Chess-tournament/db.json')
         player_table = db.table('player_table')
 
@@ -94,6 +95,7 @@ class NewPlayersController:
             'date de naissance': user_input[0].date_of_birth,
             'sexe': user_input[0].gender,
             'rang': user_input[0].ranking,
+            'tournament': user_choice[0].tournament
         }
         player_table.insert(serialized_player1)
 
@@ -103,6 +105,7 @@ class NewPlayersController:
             'date de naissance': user_input[1].date_of_birth,
             'sexe': user_input[1].gender,
             'rang': user_input[1].ranking,
+            'tournament': user_choice[1].tournament
         }
         player_table.insert(serialized_player2)
 
@@ -112,6 +115,7 @@ class NewPlayersController:
             'date de naissance': user_input[2].date_of_birth,
             'sexe': user_input[2].gender,
             'rang': user_input[2].ranking,
+            'tournament': user_choice[2].tournament
         }
         player_table.insert(serialized_player3)
 
@@ -121,8 +125,9 @@ class NewPlayersController:
             'date de naissance': user_input[3].date_of_birth,
             'sexe': user_input[3].gender,
             'rang': user_input[3].ranking,
+            'tournament': user_choice[3].tournament
         }
-        player_table.insert(serialized_player4)
+        """player_table.insert(serialized_player4)
 
         serialized_player5 = {
             'prenom': user_input[4].first_name,
@@ -158,13 +163,11 @@ class NewPlayersController:
             'sexe': user_input[7].gender,
             'rang': user_input[7].ranking,
         }
-        player_table.insert(serialized_player8)
+        player_table.insert(serialized_player8)"""
         print()
         print(">>>>> 8 joueurs ajouter. <<<<<")
-        contents = [item['name'] for item in db.table('tournament_table').all()]
-        print(f"Liste des tournois dispo >>> {contents}")
         print()
-        return MakePairPlayer(user_input)
+        #return MakePairPlayer(user_input)
 
 
 class OldPlayersController:
