@@ -70,7 +70,8 @@ class OldTournamentController:
     """bbbb"""
 
     def __call__(self):
-        Tournament.list_of_tournament(list)
+        old_players_tournament = Tournament.list_of_tournament(list)
+        #MakePairPlayer(old_players_tournament)
 
 
 class NewPlayersController:
@@ -85,8 +86,6 @@ class NewPlayersController:
         print()
         user_input = self.view.information_player()
         print(user_input)
-        # user_choice = self.view.list_of_tournament()
-        # print(user_choice)
         db = TinyDB('./Chess-tournament/db.json')
         player_table = db.table('player_table')
 
@@ -128,8 +127,8 @@ class NewPlayersController:
             'rang': user_input[3].ranking,
 
         }
-        """player_table.insert(serialized_player4)
-
+        player_table.insert(serialized_player4)
+        """
         serialized_player5 = {
             'prenom': user_input[4].first_name,
             'nom de famille': user_input[4].last_name,

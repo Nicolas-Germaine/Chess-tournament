@@ -1,6 +1,11 @@
 #from ..controllers.controllers import MakePairPlayer
+<<<<<<< HEAD
 from tinydb import TinyDB,Query,where
 
+=======
+from ..models.player import NewPlayers
+from tinydb import TinyDB, where
+>>>>>>> 4b31f7d5a16606ded7b28db4dc726380f8c2bdaa
 db = TinyDB("./Chess-tournament/db.json")
 tournament_table = db.table('tournament_table')
 player_table = db.table('player_table')
@@ -11,23 +16,29 @@ class Tournament:
 
         contents = [item['name'] for item in db.table('tournament_table').all()]
         print(f"Liste des tournois dispo >>> {contents}")
-        choice = input("Entrez le Nom du tournoi... >>> ")
-        # tournament.append(choice)
-
-        # if tournament == ['1']:
-        #     contents = [item['prenom'] for item in db.table('player_table').all()]
-        #     print(f'Les players sont >>> {contents}')
-        # else:
-        #     print('Oops...')
+        choice = str(input("Rentrez le nom du tournoi >>> "))
         table_tournament = db.table('tournament_table')
-        tournament = table_tournament.search(Query().name == choice)
-        # print(tournament[0]['players'])
-        print(f"les joueurs sont {tournament[0]['players']} ")
-        for item in tournament[0]['players']:
-            print(item.first_name)
+        name = tournament_table.search(where('name') == choice)
+        #print("============", type(list(name[0]['players'].split(" "))))
+        ##########################################################################
+        for i in list(name[0]['players'].split(" ")):
+            req_players = player_table.search(where('prenom') == str(i))
+            print("===========", i)
+            try:
+                new_player = NewPlayers(req_players[0]['prenom'],
+                                        req_players[0]['nom de famille'],
+                                        req_players[0]['date de naissance'],
+                                        req_players[0]['sexe'],
+                                        req_players[0]['rang'])
+                print(new_player)
+            except:
+                pass
+
+        return name[0]['players']
 
 
 
-
+# Crud = Create / Read / Update / Delete
+# ex -> python tinyDB create
 
 
