@@ -1,11 +1,6 @@
 #from ..controllers.controllers import MakePairPlayer
-<<<<<<< HEAD
-from tinydb import TinyDB,Query,where
-
-=======
 from ..models.player import NewPlayers
 from tinydb import TinyDB, where
->>>>>>> 4b31f7d5a16606ded7b28db4dc726380f8c2bdaa
 db = TinyDB("./Chess-tournament/db.json")
 tournament_table = db.table('tournament_table')
 player_table = db.table('player_table')
