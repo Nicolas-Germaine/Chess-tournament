@@ -26,5 +26,7 @@ class Infos:
                 print("Match Nul")
             list_joueurs.append(player_1)
             list_joueurs.append(player_2)
-            
+        
         return sorted(list_joueurs)
+    def result(self, players):
+        print("La liste des vainqueurs par ordre",sorted(players))

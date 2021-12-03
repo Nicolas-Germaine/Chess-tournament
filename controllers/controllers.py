@@ -71,7 +71,7 @@ class OldTournamentController:
 
     def __call__(self):
         old_players_tournament = Tournament.list_of_tournament(list)
-        #MakePairPlayer(old_players_tournament)
+        return MakePairPlayer(old_players_tournament)
 
 
 class NewPlayersController:

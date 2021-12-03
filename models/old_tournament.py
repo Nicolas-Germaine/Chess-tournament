@@ -16,20 +16,23 @@ class Tournament:
         name = tournament_table.search(where('name') == choice)
         #print("============", type(list(name[0]['players'].split(" "))))
         ##########################################################################
-        for i in list(name[0]['players'].split(" ")):
+        list_players = []
+        for i in list(name[0]['players']):
             req_players = player_table.search(where('prenom') == str(i))
-            print("===========", i)
+            # print("===========", i, req_players)
+            
             try:
                 new_player = NewPlayers(req_players[0]['prenom'],
                                         req_players[0]['nom de famille'],
                                         req_players[0]['date de naissance'],
                                         req_players[0]['sexe'],
                                         req_players[0]['rang'])
-                print(new_player)
+                # print("newobject",new_player)
+                list_players.append(new_player)
             except:
                 pass
-
-        return name[0]['players']
+        print(list_players)
+        return list_players
 
 
 

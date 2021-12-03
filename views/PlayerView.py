@@ -50,7 +50,8 @@ class PlayerView:
         
         list_tournament = []
         # new_player = self.information_player()
-        new_player = f'{new_player}'
+        new_player = new_player
+        list_players = [x.first_name for x in new_player]
         print("new_player====", new_player)
         contents = [item['name'] for item in db.table('tournament_table').all()]
         print(f"Liste des tournois dispo >>> {contents}")
@@ -60,6 +61,6 @@ class PlayerView:
 
         table_tournament = db.table('tournament_table')
         # table_tournament.update({'players': new_player},Query().name==choice)
-        resultat = table_tournament.update_multiple([({'players': new_player}, where("name") == choice)])
+        resultat = table_tournament.update_multiple([({'players': list_players}, where("name") == choice)])
         print(resultat)
 
